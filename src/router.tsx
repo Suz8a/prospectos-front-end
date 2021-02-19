@@ -1,7 +1,6 @@
 import React from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
 import Content from "./containers/content";
-import NewProspect from "./layouts/new-prospect";
 import SideBar from "./modules/side-bar";
 import Section from "./containers/section";
 

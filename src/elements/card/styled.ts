@@ -17,4 +17,5 @@ export const CardContainer = styled.div<CardContainerProps>`
     border: 1px solid ${borderColor ? borderColor : "#C9C9C9"};
     background-color: ${backgroundColor ? backgroundColor : "#FFFFFF"};
  `}
+  min-height:fit-content;
 `;

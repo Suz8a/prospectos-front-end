@@ -5,4 +5,7 @@ export const ContentContainer = styled.div`
   height: 100vh;
   min-height: fit-content;
   background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
