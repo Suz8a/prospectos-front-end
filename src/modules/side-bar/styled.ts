@@ -9,7 +9,7 @@ export const SideBarContainer = styled.div`
 `;
 
 export const ListContainer = styled.div`
-  padding-top: 60px;
+  padding-top: 30px;
   width: 100%;
   height: fit-content;
 `;

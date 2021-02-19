@@ -8,6 +8,7 @@ type CardProps = {
   children: ReactNode;
   backgroundColor?: string;
   borderColor?: string;
+  padding?: string;
 };
 
 function Card({
@@ -17,6 +18,7 @@ function Card({
   children,
   backgroundColor,
   borderColor,
+  padding,
 }: CardProps) {
   return (
     <CardContainer
@@ -25,6 +27,7 @@ function Card({
       borderRadius={borderRadius}
       backgroundColor={backgroundColor}
       borderColor={borderColor}
+      padding={padding}
     >
       {children}
     </CardContainer>

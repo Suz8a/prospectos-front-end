@@ -3,6 +3,7 @@ import { Switch, Route, useHistory } from "react-router-dom";
 import Content from "./containers/content";
 import SideBar from "./modules/side-bar";
 import Section from "./containers/section";
+import NewProspect from "./modules/new-prospect";
 
 export const Router = () => {
   const history = useHistory();
@@ -15,11 +16,7 @@ export const Router = () => {
       <SideBar onOptionClick={(url) => onOptionClick(url)} />
       <Content>
         <Switch>
-          <Route
-            exact
-            path="/prospects/new"
-            component={() => <div>new prospecto</div>}
-          />
+          <Route exact path="/prospects/new" component={NewProspect} />
           <Route
             exact
             path="/prospects"
