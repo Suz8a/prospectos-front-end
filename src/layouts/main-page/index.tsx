@@ -6,7 +6,7 @@ import Content from "../../containers/content";
 function MainPage() {
   return (
     <Section>
-      <SideBar />
+      <SideBar onOptionClick={(url) => console.log(url)} />
       <Content />
     </Section>
   );

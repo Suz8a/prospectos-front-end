@@ -5,15 +5,19 @@ import { sideBarOptions } from "../../constants";
 import Card from "../../elements/card";
 import { ListContainer, SideBarContainer } from "./styled";
 
-function SideBar() {
+type SideBarProps = {
+  onOptionClick: (url: string) => void;
+};
+
+function SideBar({ onOptionClick }: SideBarProps) {
   return (
     <Card width="350px" height="100vh">
       <SideBarContainer>
         <AccountInfo name="Adriana Ochoa" />
         <ListContainer>
           <List component="nav">
-            {sideBarOptions.map(({ option, icon }) => (
-              <ListItem button>
+            {sideBarOptions.map(({ option, icon, url }, index) => (
+              <ListItem key={index} button onClick={() => onOptionClick(url)}>
                 <ListItemIcon>{icon}</ListItemIcon>
                 <ListItemText primary={option} />
               </ListItem>
