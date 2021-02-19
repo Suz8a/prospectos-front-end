@@ -1,5 +1,5 @@
 import React from "react";
-import FormSection from "../../components/info-section";
+import FormSection from "../../components/form-section";
 import Card from "../../elements/card";
 import {
   prospectData,
@@ -9,7 +9,7 @@ import {
 } from "../../constants";
 import { useState } from "react";
 
-function NewProspect() {
+function ProspectForm() {
   const [formData, setFormData] = useState<prospectData>({
     nombre: "",
     primerApellido: "",
@@ -55,4 +55,4 @@ function NewProspect() {
   );
 }
 
-export default NewProspect;
+export default ProspectForm;

@@ -4,7 +4,7 @@ import { FullLine } from "./styled";
 type LineProps = {
   width?: string;
   height?: string;
-  color?: String;
+  color?: string;
 };
 
 function Line({ width, height, color }: LineProps) {
