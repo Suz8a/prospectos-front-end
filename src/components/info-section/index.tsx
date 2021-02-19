@@ -24,6 +24,12 @@ function FormSection({
   currentValues,
   onChange,
 }: FormSectionProps) {
+  function onlyNumberKey(evt: any) {
+    var ASCIICode = evt.which ? evt.which : evt.keyCode;
+    if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57)) return false;
+    return true;
+  }
+
   return (
     <SectionContainer>
       <Grid container spacing={3}>
@@ -41,6 +47,7 @@ function FormSection({
               value={currentValues[id]}
               variant="outlined"
               size="small"
+              onKeyPress={(event) => onlyNumberKey(event)}
             />
           </Grid>
         ))}

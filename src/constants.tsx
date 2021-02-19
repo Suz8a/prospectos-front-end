@@ -23,25 +23,25 @@ export const datosPersonales = [
   {
     id: "nombre",
     title: "Nombre",
-    required: false,
+    required: true,
     type: "string",
   },
   {
     id: "primerApellido",
     title: "Apellido paterno",
-    required: false,
+    required: true,
     type: "string",
   },
   {
     id: "segundoApellido",
     title: "Apellido materno",
-    required: false,
+    required: true,
     type: "string",
   },
   {
     id: "rfc",
     title: "RFC",
-    required: false,
+    required: true,
     type: "string",
   },
 ];
@@ -50,25 +50,25 @@ export const direccion = [
   {
     id: "calle",
     title: "Calle",
-    required: false,
+    required: true,
     type: "string",
   },
   {
     id: "numero",
     title: "Número",
-    required: false,
+    required: true,
     type: "number",
   },
   {
     id: "colonia",
     title: "Colonia",
-    required: false,
+    required: true,
     type: "string",
   },
   {
     id: "codigoPostal",
     title: "Código Postal",
-    required: false,
+    required: true,
     type: "number",
   },
 ];
@@ -77,7 +77,7 @@ export const contacto = [
   {
     id: "telefono",
     title: "Teléfono",
-    required: false,
+    required: true,
     type: "number",
   },
 ];
