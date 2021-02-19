@@ -10,6 +10,6 @@ export const FullLine = styled.div<FullLineProps>`
   ${({ width, height, color }) => `
     width: ${width ? width : "100%"};
     height: ${height ? height : "1px"};
-    color: ${color ? color : "#C9C9C9"}
+    background-color: ${color ? color : "#C9C9C9"};
 `}
 `;

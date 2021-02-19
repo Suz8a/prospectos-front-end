@@ -8,6 +8,8 @@ import {
   contacto,
 } from "../../constants";
 import { useState } from "react";
+import FormSectionItemsList from "../../components/form-section-items-list";
+import { Grid } from "@material-ui/core";
 
 function ProspectForm() {
   const [formData, setFormData] = useState<prospectData>({
@@ -50,7 +52,11 @@ function ProspectForm() {
         requiredData={contacto}
         onChange={(e, id) => onChange(e, id)}
       />
-      {console.log(formData)}
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <FormSectionItemsList />
+        </Grid>
+      </Grid>
     </Card>
   );
 }
