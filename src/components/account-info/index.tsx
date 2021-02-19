@@ -1,5 +1,5 @@
 import React from "react";
-import { InfoContainer } from "./styled";
+import { InfoContainer, TextContainer } from "./styled";
 import { IoPersonCircleSharp } from "react-icons/io5";
 import { IconContainer } from "./styled";
 
@@ -13,7 +13,7 @@ function AccountInfo({ name }: AccountInfoProps) {
       <IconContainer>
         <IoPersonCircleSharp size="70px" />
       </IconContainer>
-      <h2>{name}</h2>
+      <TextContainer>{name}</TextContainer>
     </InfoContainer>
   );
 }

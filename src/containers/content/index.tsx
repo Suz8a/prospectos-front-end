@@ -1,12 +1,12 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { ContentContainer } from "./styled";
 
-function Content() {
-  return (
-    <ContentContainer>
-      <div>no</div>
-    </ContentContainer>
-  );
+type ContentProps = {
+  children: ReactNode;
+};
+
+function Content({ children }: ContentProps) {
+  return <ContentContainer>{children}</ContentContainer>;
 }
 
 export default Content;

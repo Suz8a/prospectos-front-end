@@ -16,3 +16,13 @@ export const InfoContainer = styled.div<InfoContainerProps>`
 export const IconContainer = styled.div`
   margin-left: -6px;
 `;
+
+export const TextContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  padding-left: 10px;
+`;
