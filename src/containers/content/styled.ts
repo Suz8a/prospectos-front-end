@@ -9,4 +9,5 @@ export const ContentContainer = styled.div`
   align-items: center;
   justify-content: center;
   padding: 20px;
+  overflow: scroll;
 `;

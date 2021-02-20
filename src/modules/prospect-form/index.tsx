@@ -9,6 +9,7 @@ import {
 } from "../../constants";
 import { useState } from "react";
 import FormSectionItemsList from "../../components/form-section-items-list";
+import AddIcon from "@material-ui/icons/Add";
 
 function ProspectForm() {
   const [formData, setFormData] = useState<prospectData>({
@@ -52,7 +53,11 @@ function ProspectForm() {
         onChange={(e, id) => onChange(e, id)}
       />
 
-      <FormSectionItemsList />
+      <FormSectionItemsList
+        buttonText="AGREGAR DOCUMENTO"
+        icon={<AddIcon color="primary" />}
+        items={["1", "2"]}
+      />
     </Card>
   );
 }

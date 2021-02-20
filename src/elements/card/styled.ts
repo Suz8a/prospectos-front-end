@@ -26,5 +26,5 @@ export const CardContainer = styled.div<CardContainerProps>`
     background-color: ${backgroundColor ? backgroundColor : "#FFFFFF"};
     padding:${padding ? padding : "5px"};
  `}
-  min-height:fit-content;
+  height:auto;
 `;
