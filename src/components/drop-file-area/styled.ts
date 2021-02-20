@@ -1,6 +1,9 @@
 import styled, { keyframes } from "styled-components";
-import { Typography } from "@material-ui/core";
 import Cancel from "@material-ui/icons/Cancel";
+
+type visibilityProps = {
+  show?: boolean;
+};
 
 const showAnimation = keyframes`
     from{
@@ -20,11 +23,6 @@ const showContainer = keyframes`
         transform:scaleY(1);
         opacity:1;
     }
-`;
-
-export const Cloud = styled.img`
-  display: block;
-  margin: 20px auto 0px auto;
 `;
 
 export const CancelIcon = styled(Cancel)`
@@ -58,10 +56,10 @@ export const DescriptionContainer = styled.div`
 
 export const DropArea = styled.div`
   animation: ${showContainer} 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
-  height: 200px;
+  height: auto;
   width: 100%;
-  background: white;
   border-radius: 4px;
+  padding: 10px;
   border: 1px dashed #00000058;
   display: flex;
   flex-direction: column;
@@ -80,7 +78,6 @@ export const Item = styled.div`
   width: auto;
   height: 40px;
   font-size: 11px;
-  margin: 4px 5px 0px 5px;
   padding: 5px;
   border: 1px solid #00000058;
   border-radius: 10px;
@@ -88,10 +85,10 @@ export const Item = styled.div`
   align-items: center;
 `;
 
-export const UploadButton = styled.div`
+export const UploadButton = styled.div<visibilityProps>`
   width: 230px;
   height: 40px;
-  margin-top: 30px;
+  margin-top: 20px;
   background: black;
   color: white;
   border-radius: 50px;
@@ -106,6 +103,9 @@ export const UploadButton = styled.div`
   &:active {
     transform: scale(0.95);
   }
+  ${({ show }) => `
+    ${!show ? "display:none" : ""}
+  `}
 `;
 
 export const CancelIconContainer = styled.div`

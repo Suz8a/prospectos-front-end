@@ -37,9 +37,7 @@ function DropFileZone() {
           file["preview"] = URL.createObjectURL(file);
           return file;
         });
-
         const new_files = [...lista, ...files_with_preview];
-
         onSetLista(new_files);
       }}
     >
@@ -47,15 +45,14 @@ function DropFileZone() {
         <div
           {...getRootProps()}
           onClick={() => {}}
-          className=""
-          style={{ width: "100%", height: "124px", margin: "auto" }}
+          style={{ width: "100%", height: "auto" }}
         >
           <input {...getInputProps()} />
           <DropArea>
             {lista.length === 0 ? (
               <>
                 <DescriptionContainer>
-                  <IoMdCloudUpload size="30px" color="#9c9c9cde" />
+                  <IoMdCloudUpload size="40px" color="#9c9c9cde" />
                   <Grid
                     container
                     direction="column"
@@ -69,7 +66,7 @@ function DropFileZone() {
             ) : null}
 
             {lista.length > 0 ? (
-              <div style={{ width: "auto", height: "100px", overflow: "auto" }}>
+              <div style={{ width: "100%", height: "auto", overflow: "auto" }}>
                 {lista.map((file, index) => (
                   <Item key={index}>
                     {file.path}
@@ -85,7 +82,10 @@ function DropFileZone() {
               </div>
             ) : null}
 
-            <UploadButton onClick={getRootProps().onClick}>
+            <UploadButton
+              onClick={getRootProps().onClick}
+              show={lista.length === 0}
+            >
               <Grid
                 container
                 direction="row"
