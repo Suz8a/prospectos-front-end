@@ -7,6 +7,7 @@ type CardContainerProps = {
   backgroundColor?: string;
   borderColor?: string;
   padding?: string;
+  position?: string;
 };
 
 export const CardContainer = styled.div<CardContainerProps>`
@@ -17,6 +18,7 @@ export const CardContainer = styled.div<CardContainerProps>`
     backgroundColor,
     borderColor,
     padding,
+    position,
   }) => `
     min-width: ${width};
     max-width: ${width};
@@ -24,7 +26,8 @@ export const CardContainer = styled.div<CardContainerProps>`
     border-radius: ${borderRadius ? borderRadius : ""};
     border: 1px solid ${borderColor ? borderColor : "#C9C9C9"};
     background-color: ${backgroundColor ? backgroundColor : "#FFFFFF"};
-    padding:${padding ? padding : "5px"};
+    padding: ${padding ? padding : "5px"};
+    position: ${position ? position : "relative"};
  `}
-  height:auto;
+  min-height: 100%;
 `;

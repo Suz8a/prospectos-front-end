@@ -9,6 +9,7 @@ type CardProps = {
   backgroundColor?: string;
   borderColor?: string;
   padding?: string;
+  position?: "static" | "relative" | "fixed" | "absolute" | "sticky";
 };
 
 function Card({
@@ -19,6 +20,7 @@ function Card({
   backgroundColor,
   borderColor,
   padding,
+  position,
 }: CardProps) {
   return (
     <CardContainer
@@ -28,6 +30,7 @@ function Card({
       backgroundColor={backgroundColor}
       borderColor={borderColor}
       padding={padding}
+      position={position}
     >
       {children}
     </CardContainer>

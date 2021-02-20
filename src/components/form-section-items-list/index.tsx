@@ -19,13 +19,17 @@ import CancelIcon from "@material-ui/icons/Cancel";
 type FormSectionItemsListProps = {
   buttonText: string;
   icon: ReactNode;
-  items: any[];
+  items: string[];
+  onDeleteItem: (name: number) => void;
+  onButtonClick: () => void;
 };
 
 function FormSectionItemsList({
   buttonText,
   icon,
   items,
+  onDeleteItem,
+  onButtonClick,
 }: FormSectionItemsListProps) {
   return (
     <FormSectionContainer>
@@ -34,7 +38,7 @@ function FormSectionItemsList({
           <Title text="Documentos" />
         </Grid>
         <Grid item xs={3}>
-          <Button color="primary" fullWidth>
+          <Button color="primary" fullWidth onClick={() => onButtonClick()}>
             {icon}
             {buttonText}
           </Button>
@@ -42,16 +46,20 @@ function FormSectionItemsList({
         <Line />
         <Grid item xs={12}>
           <List>
-            {items.map((item) => (
-              <ListItem>
+            {items.map((name, index) => (
+              <ListItem key={index}>
                 <ListItemAvatar>
                   <Avatar>
                     <InsertDriveFileIcon />
                   </Avatar>
                 </ListItemAvatar>
-                <ListItemText primary="name" />
+                <ListItemText primary={name} />
                 <ListItemSecondaryAction>
-                  <IconButton edge="end" aria-label="delete">
+                  <IconButton
+                    edge="end"
+                    aria-label="delete"
+                    onClick={() => onDeleteItem(index)}
+                  >
                     <CancelIcon />
                   </IconButton>
                 </ListItemSecondaryAction>

@@ -57,6 +57,8 @@ function ProspectForm() {
         buttonText="AGREGAR DOCUMENTO"
         icon={<AddIcon color="primary" />}
         items={["1", "2"]}
+        onDeleteItem={(name) => console.log(name)}
+        onButtonClick={() => console.log("se clickeo el boton")}
       />
     </Card>
   );

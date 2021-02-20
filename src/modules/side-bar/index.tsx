@@ -11,7 +11,7 @@ type SideBarProps = {
 
 function SideBar({ onOptionClick }: SideBarProps) {
   return (
-    <Card width="280px" height="100vh">
+    <Card width="280px" height="" padding="0px" position="fixed">
       <SideBarContainer>
         <AccountInfo name="Adriana Ochoa" />
         <ListContainer>
