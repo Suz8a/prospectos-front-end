@@ -20,6 +20,7 @@ type FormSectionItemsListProps = {
   buttonText: string;
   icon: ReactNode;
   items: string[];
+  padding?: string;
   onDeleteItem: (name: number) => void;
   onButtonClick: () => void;
 };
@@ -28,11 +29,12 @@ function FormSectionItemsList({
   buttonText,
   icon,
   items,
+  padding,
   onDeleteItem,
   onButtonClick,
 }: FormSectionItemsListProps) {
   return (
-    <FormSectionContainer>
+    <FormSectionContainer padding={padding}>
       <Grid container>
         <Grid item xs={9}>
           <Title text="Documentos" />

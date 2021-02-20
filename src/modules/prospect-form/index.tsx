@@ -10,6 +10,7 @@ import {
 import { useState } from "react";
 import FormSectionItemsList from "../../components/form-section-items-list";
 import AddIcon from "@material-ui/icons/Add";
+import { Button, Grid } from "@material-ui/core";
 
 function ProspectForm() {
   const [formData, setFormData] = useState<prospectData>({
@@ -30,6 +31,22 @@ function ProspectForm() {
     id: string
   ) {
     setFormData({ ...formData, [id]: e.target.value });
+  }
+
+  function onClickEnviar() {
+    console.log("click enviar");
+  }
+
+  function onClickCancelar() {
+    console.log("click cancelar");
+  }
+
+  function onDeleteItem(index: number) {
+    console.log(index);
+  }
+
+  function onAgregarDocumento() {
+    console.log("agregar documento");
   }
 
   return (
@@ -57,9 +74,33 @@ function ProspectForm() {
         buttonText="AGREGAR DOCUMENTO"
         icon={<AddIcon color="primary" />}
         items={["1", "2"]}
-        onDeleteItem={(name) => console.log(name)}
-        onButtonClick={() => console.log("se clickeo el boton")}
+        onDeleteItem={(index) => onDeleteItem(index)}
+        onButtonClick={() => onAgregarDocumento()}
+        padding="16px 0 30px 16px"
       />
+
+      <Grid container spacing={3} justify="flex-end">
+        <Grid item xs={3}>
+          <Button
+            variant="outlined"
+            color="primary"
+            fullWidth
+            onClick={() => onClickCancelar()}
+          >
+            Cancelar
+          </Button>
+        </Grid>
+        <Grid item xs={3}>
+          <Button
+            variant="contained"
+            color="primary"
+            fullWidth
+            onClick={() => onClickEnviar()}
+          >
+            Enviar
+          </Button>
+        </Grid>
+      </Grid>
     </Card>
   );
 }
