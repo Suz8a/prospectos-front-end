@@ -36,7 +36,7 @@ function FormSectionItemsList({
 }: FormSectionItemsListProps) {
   return (
     <FormSectionContainer padding={padding}>
-      <FileUploader />
+      <FileUploader onClickEnviar={() => {}} />
       <Grid container>
         <Grid item xs={9}>
           <Title text="Documentos" />

@@ -1,6 +1,5 @@
 import React from "react";
 import Dropzone from "react-dropzone";
-import { useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import { IoMdCloudUpload } from "react-icons/io";
 import {
@@ -14,20 +13,15 @@ import {
   DescriptionContainer,
 } from "./styled";
 
-type FileType = File & { preview: string; path: string };
-function DropFileZone() {
-  const [lista, setLista] = useState<FileType[]>([]);
-  function onDelete(index: number) {
-    console.log(index);
-    const newLista = [...lista];
-    newLista.splice(index, 1);
-    setLista(newLista);
-    console.log(lista);
-  }
-  function onSetLista(lista: FileType[]) {
-    setLista(lista);
-    console.log(lista);
-  }
+export type FileType = File & { preview: string; path: string };
+
+type DropFileZoneProps = {
+  onDelete: (index: number) => void;
+  onSetItems: (items: FileType[]) => void;
+  items: FileType[];
+};
+
+function DropFileZone({ onDelete, onSetItems, items }: DropFileZoneProps) {
   return (
     <Dropzone
       onDrop={(files_) => {
@@ -36,8 +30,8 @@ function DropFileZone() {
           file["preview"] = URL.createObjectURL(file);
           return file;
         });
-        const new_files = [...lista, ...files_with_preview];
-        onSetLista(new_files);
+        const new_files = [...items, ...files_with_preview];
+        onSetItems(new_files);
       }}
     >
       {({ getRootProps, getInputProps }) => (
@@ -48,7 +42,7 @@ function DropFileZone() {
         >
           <input {...getInputProps()} />
           <DropArea>
-            {lista.length === 0 ? (
+            {items.length === 0 ? (
               <>
                 <DescriptionContainer>
                   <IoMdCloudUpload size="40px" color="#9c9c9cde" />
@@ -64,9 +58,9 @@ function DropFileZone() {
               </>
             ) : null}
 
-            {lista.length > 0 ? (
+            {items.length > 0 ? (
               <div style={{ width: "100%", height: "auto", overflow: "auto" }}>
-                {lista.map((file, index) => (
+                {items.map((file, index) => (
                   <Item key={index}>
                     {file.path}
                     <CancelIconContainer
@@ -83,7 +77,7 @@ function DropFileZone() {
 
             <UploadButton
               onClick={getRootProps().onClick}
-              show={lista.length === 0}
+              show={items.length === 0}
             >
               <Grid
                 container
