@@ -1,8 +1,8 @@
 import React from "react";
-import { SectionContainer } from "./styled";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Title from "../../elements/title";
+import FormSectionContainer from "../../elements/form-section-container";
 
 type FormSectionProps = {
   title: string;
@@ -26,7 +26,7 @@ function FormSection({
   onChange,
 }: FormSectionProps) {
   return (
-    <SectionContainer>
+    <FormSectionContainer padding="0px">
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Title text={title} />
@@ -42,11 +42,12 @@ function FormSection({
               value={currentValues[id]}
               variant="outlined"
               size="small"
+              fullWidth={true}
             />
           </Grid>
         ))}
       </Grid>
-    </SectionContainer>
+    </FormSectionContainer>
   );
 }
 
