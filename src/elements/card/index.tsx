@@ -10,6 +10,8 @@ type CardProps = {
   borderColor?: string;
   padding?: string;
   position?: "static" | "relative" | "fixed" | "absolute" | "sticky";
+  className?: string;
+  margin?: string;
 };
 
 function Card({
@@ -21,9 +23,12 @@ function Card({
   borderColor,
   padding,
   position,
+  className,
+  margin,
 }: CardProps) {
   return (
     <CardContainer
+      className={className}
       width={width}
       height={height}
       borderRadius={borderRadius}
@@ -31,6 +36,7 @@ function Card({
       borderColor={borderColor}
       padding={padding}
       position={position}
+      margin={margin}
     >
       {children}
     </CardContainer>
