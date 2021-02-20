@@ -32,33 +32,41 @@ export const CancelIcon = styled(Cancel)`
   height: 14px;
 `;
 
-export const ButtonDescription = styled(Typography)`
-  font-size: 10px;
-  height: 15px;
+export const ButtonDescription = styled.div`
+  font-size: 15px;
+  height: auto;
   width: fit-content;
   font-weight: bold;
 `;
 
-export const Description = styled(Typography)`
-  display: block;
-  margin: 0px auto 0px auto;
+export const Description = styled.div`
   width: fit-content;
-  height: 16px;
-  font-size: 11px;
+  font-size: 16px;
   font-weight: bold;
   letter-spacing: 1px;
   color: #9c9c9cde;
-  opacity: 1;
+`;
+
+export const DescriptionContainer = styled.div`
+  width: fit-content;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const DropArea = styled.div`
   animation: ${showContainer} 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
-  height: 124px;
+  height: 200px;
   width: 100%;
   background: white;
   border-radius: 4px;
   border: 1px dashed #00000058;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   & > * {
     opacity: 0;
     animation: ${showAnimation} 0.4s;
@@ -83,14 +91,9 @@ export const Item = styled.div`
 export const UploadButton = styled.div`
   width: 230px;
   height: 40px;
+  margin-top: 30px;
   background: black;
-  padding: 3px 5px 3px 5px;
   color: white;
-  margin: auto;
-  left: 0px;
-  right: 0px;
-  bottom: 10px;
-  position: absolute;
   border-radius: 50px;
   transition: 0.1s;
   display: flex;

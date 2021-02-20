@@ -2,6 +2,7 @@ import React from "react";
 import Dropzone from "react-dropzone";
 import { useState } from "react";
 import Grid from "@material-ui/core/Grid";
+import { IoMdCloudUpload } from "react-icons/io";
 import {
   Description,
   DropArea,
@@ -10,8 +11,8 @@ import {
   CancelIconContainer,
   CancelIcon,
   ButtonDescription,
+  DescriptionContainer,
 } from "./styled";
-import { Button } from "@material-ui/core";
 
 type FileType = File & { preview: string; path: string };
 function DropFileZone() {
@@ -53,17 +54,17 @@ function DropFileZone() {
           <DropArea>
             {lista.length === 0 ? (
               <>
-                <div style={{ marginTop: "30px" }}>
-                  <div>cloud</div>
+                <DescriptionContainer>
+                  <IoMdCloudUpload size="30px" color="#9c9c9cde" />
                   <Grid
                     container
-                    direction="row"
+                    direction="column"
                     justify="center"
                     alignItems="center"
                   >
-                    <Description>Arrastre imagen aqui</Description>
+                    <Description>Arrastre archivo aqui</Description>
                   </Grid>
-                </div>
+                </DescriptionContainer>
               </>
             ) : null}
 
@@ -84,24 +85,21 @@ function DropFileZone() {
               </div>
             ) : null}
 
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={getRootProps().onClick}
-            >
-              Seleccionar archivos
-            </Button>
+            <UploadButton onClick={getRootProps().onClick}>
+              <Grid
+                container
+                direction="row"
+                justify="center"
+                alignItems="center"
+              >
+                <ButtonDescription>Seleccionar archivos</ButtonDescription>
+              </Grid>
+            </UploadButton>
           </DropArea>
         </div>
       )}
     </Dropzone>
   );
 }
-
-/**              <img
-                  src={file.preview}
-                  alt={file.path}
-                  style={{ width: 50, height: 50, padding: "5px" }}
-                /> */
 
 export default DropFileZone;
