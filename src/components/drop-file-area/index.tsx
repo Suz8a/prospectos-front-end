@@ -19,11 +19,10 @@ function DropFileZone() {
   const [lista, setLista] = useState<FileType[]>([]);
   function onDelete(index: number) {
     console.log(index);
-    return () => {
-      const newLista = [...lista];
-      newLista.splice(index, 1);
-      setLista(newLista);
-    };
+    const newLista = [...lista];
+    newLista.splice(index, 1);
+    setLista(newLista);
+    console.log(lista);
   }
   function onSetLista(lista: FileType[]) {
     setLista(lista);
