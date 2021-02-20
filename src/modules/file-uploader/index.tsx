@@ -5,23 +5,15 @@ import { ModalContainer } from "./styled";
 import { Grid, TextField } from "@material-ui/core";
 import Title from "../../elements/title";
 import { useState } from "react";
-import { DropzoneDialog } from "material-ui-dropzone";
-import { DropzoneArea } from "material-ui-dropzone";
-
-type FileUploaderProps = {};
+import DropFileZone from "../../components/drop-file-area";
 
 function FileUploader() {
   const [name, setName] = useState("");
-  const [files, setFiles] = useState<File[]>([]);
 
   function onChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
     setName(e.target.value);
-  }
-
-  function handleChange(files: File[]) {
-    setFiles(files);
   }
 
   return (
@@ -48,13 +40,7 @@ function FileUploader() {
               />
             </Grid>
             <Grid item xs={12}>
-              <DropzoneArea
-                onChange={(files) => handleChange(files)}
-                showPreviews={true}
-                showPreviewsInDropzone={false}
-                useChipsForPreview
-                previewText="Selected files"
-              />
+              <DropFileZone />
             </Grid>
           </Grid>
         </Card>
