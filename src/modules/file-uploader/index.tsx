@@ -89,7 +89,6 @@ function FileUploader({
                   color="primary"
                   fullWidth
                   onClick={async () => {
-                    debugger;
                     await onClickSubir(items[0], name);
                     cleanModal();
                   }}
