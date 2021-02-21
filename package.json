@@ -16,6 +16,7 @@
     "@types/react-icons": "^3.0.0",
     "@types/react-router-dom": "^5.1.7",
     "@types/styled-components": "^5.1.7",
+    "axios": "^0.21.1",
     "material-ui-dropzone": "^3.5.0",
     "mime-types": "^2.1.29",
     "react": "^17.0.1",
