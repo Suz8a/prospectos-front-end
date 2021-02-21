@@ -35,14 +35,15 @@ export const ButtonDescription = styled.div`
   height: auto;
   width: fit-content;
   font-weight: bold;
+  color: black;
 `;
 
 export const Description = styled.div`
   width: fit-content;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 500;
   letter-spacing: 1px;
-  color: #9c9c9cde;
+  color: rgba(123, 123, 123, 0.87);
 `;
 
 export const DescriptionContainer = styled.div`
@@ -59,7 +60,7 @@ export const DropArea = styled.div`
   height: auto;
   width: 100%;
   border-radius: 4px;
-  padding: 10px;
+  padding: 20px;
   border: 1px dashed #00000058;
   display: flex;
   flex-direction: column;
@@ -86,18 +87,16 @@ export const Item = styled.div`
 `;
 
 export const UploadButton = styled.div<visibilityProps>`
-  width: 230px;
-  height: 40px;
-  margin-top: 20px;
-  background: black;
-  color: white;
-  border-radius: 50px;
+  width: fit-content;
+  height: auto;
+  margin-top: 10px;
+  border-radius: 5px;
   transition: 0.1s;
   display: flex;
   align-items: center;
   justify-content: center;
   &:hover {
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.1);
     cursor: pointer;
   }
   &:active {
@@ -112,7 +111,7 @@ export const CancelIconContainer = styled.div`
   float: right;
   margin: auto 0 auto auto;
   &:hover {
-    color: red;
+    color: rgba(0, 0, 0, 0.5);
     cursor: pointer;
   }
 `;

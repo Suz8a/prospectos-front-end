@@ -8,10 +8,11 @@ import { useState } from "react";
 import DropFileZone, { FileType } from "../../components/drop-file-area";
 
 type FileUploaderProps = {
-  onClickEnviar: () => void;
+  onClickSubir: () => void;
+  onClickCancelar: () => void;
 };
 
-function FileUploader({ onClickEnviar }: FileUploaderProps) {
+function FileUploader({ onClickSubir, onClickCancelar }: FileUploaderProps) {
   const [name, setName] = useState("");
   const [items, setItems] = useState<FileType[]>([]);
 
@@ -42,7 +43,7 @@ function FileUploader({ onClickEnviar }: FileUploaderProps) {
     >
       <ModalContainer>
         <Card width="800px" height="auto" padding="20px">
-          <Grid container spacing={3}>
+          <Grid container spacing={5}>
             <Grid item xs={12}>
               <Title text="Subir archivo" />
             </Grid>
@@ -63,15 +64,25 @@ function FileUploader({ onClickEnviar }: FileUploaderProps) {
                 onSetItems={(items) => onSetItems(items)}
               />
             </Grid>
-            <Grid container spacing={3} item xs={6} justify="flex-end">
-              <Grid item xs={6}>
+            <Grid container item spacing={3} justify="flex-end">
+              <Grid item xs={3}>
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  fullWidth
+                  onClick={() => onClickCancelar()}
+                >
+                  Cancelar
+                </Button>
+              </Grid>
+              <Grid item xs={3}>
                 <Button
                   variant="contained"
                   color="primary"
                   fullWidth
-                  onClick={() => onClickEnviar()}
+                  onClick={() => onClickSubir()}
                 >
-                  Enviar
+                  Subir
                 </Button>
               </Grid>
             </Grid>

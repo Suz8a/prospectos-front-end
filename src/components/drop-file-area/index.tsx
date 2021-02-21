@@ -1,7 +1,7 @@
 import React from "react";
 import Dropzone from "react-dropzone";
 import Grid from "@material-ui/core/Grid";
-import { IoMdCloudUpload } from "react-icons/io";
+import { MdFileUpload } from "react-icons/md";
 import {
   Description,
   DropArea,
@@ -12,6 +12,7 @@ import {
   ButtonDescription,
   DescriptionContainer,
 } from "./styled";
+import { Button } from "@material-ui/core";
 
 export type FileType = File & { preview: string; path: string };
 
@@ -45,14 +46,19 @@ function DropFileZone({ onDelete, onSetItems, items }: DropFileZoneProps) {
             {items.length === 0 ? (
               <>
                 <DescriptionContainer>
-                  <IoMdCloudUpload size="40px" color="#9c9c9cde" />
+                  <MdFileUpload size="40px" color="rgba(123, 123, 123, 0.87)" />
                   <Grid
                     container
                     direction="column"
                     justify="center"
                     alignItems="center"
                   >
-                    <Description>Arrastre archivo aqui</Description>
+                    <Grid item xs={12}>
+                      <Description>Arrastre archivo aqui</Description>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Description>o</Description>
+                    </Grid>
                   </Grid>
                 </DescriptionContainer>
               </>
@@ -75,19 +81,15 @@ function DropFileZone({ onDelete, onSetItems, items }: DropFileZoneProps) {
               </div>
             ) : null}
 
-            <UploadButton
+            <Button
+              color="primary"
               onClick={getRootProps().onClick}
-              show={items.length === 0}
+              style={{
+                display: items.length !== 0 ? "none" : "",
+              }}
             >
-              <Grid
-                container
-                direction="row"
-                justify="center"
-                alignItems="center"
-              >
-                <ButtonDescription>Seleccionar archivos</ButtonDescription>
-              </Grid>
-            </UploadButton>
+              Seleccionar archivos
+            </Button>
           </DropArea>
         </div>
       )}
