@@ -70,59 +70,73 @@ function ProspectForm() {
 
   return (
     <Card width="80%" height="80%" padding="30px" borderRadius="5px">
-      <FileUploader
-        open={openModal}
-        onClickSubir={(item, name) => onClickSubirArchivo(item, name)}
-        onClickCancelar={closeModal}
-      />
-      <FormSection
-        currentValues={formData}
-        title="Datos personales"
-        requiredData={datosPersonales}
-        onChange={(e, id) => onChange(e, id)}
-      />
-      <FormSection
-        currentValues={formData}
-        title="Dirección"
-        requiredData={direccion}
-        onChange={(e, id) => onChange(e, id)}
-      />
-      <FormSection
-        currentValues={formData}
-        title="Contacto"
-        requiredData={contacto}
-        onChange={(e, id) => onChange(e, id)}
-      />
-
-      <FormSectionItemsList
-        buttonText="AGREGAR DOCUMENTO"
-        icon={<AddIcon color="primary" />}
-        items={formData.documentos.map((documento) => documento.name)}
-        onDeleteItem={(index) => onDeleteItem(index)}
-        onButtonClick={() => onAgregarDocumento()}
-        padding="16px 0 30px 0px"
-      />
-
-      <Grid container spacing={3} justify="flex-end">
-        <Grid item xs={3}>
-          <Button
-            variant="outlined"
-            color="primary"
-            fullWidth
-            onClick={() => onClickCancelar()}
-          >
-            Cancelar
-          </Button>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <FileUploader
+            open={openModal}
+            onClickSubir={(item, name) => onClickSubirArchivo(item, name)}
+            onClickCancelar={closeModal}
+          />
         </Grid>
-        <Grid item xs={3}>
-          <Button
-            variant="contained"
-            color="primary"
-            fullWidth
-            onClick={() => onClickEnviar()}
-          >
-            Enviar
-          </Button>
+
+        <Grid item xs={12}>
+          <FormSection
+            currentValues={formData}
+            title="Datos personales"
+            requiredData={datosPersonales}
+            onChange={(e, id) => onChange(e, id)}
+          />
+        </Grid>
+
+        <Grid item xs={12}>
+          <FormSection
+            currentValues={formData}
+            title="Dirección"
+            requiredData={direccion}
+            onChange={(e, id) => onChange(e, id)}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <FormSection
+            currentValues={formData}
+            title="Contacto"
+            requiredData={contacto}
+            onChange={(e, id) => onChange(e, id)}
+          />
+        </Grid>
+
+        <Grid item xs={12}>
+          <FormSectionItemsList
+            buttonText="AGREGAR DOCUMENTO"
+            icon={<AddIcon color="primary" />}
+            items={formData.documentos.map((documento) => documento.name)}
+            onDeleteItem={(index) => onDeleteItem(index)}
+            onButtonClick={() => onAgregarDocumento()}
+            padding="16px 0 30px 0px"
+          />
+        </Grid>
+
+        <Grid container item xs={12} spacing={3} justify="flex-end">
+          <Grid item xs={3}>
+            <Button
+              variant="outlined"
+              color="primary"
+              fullWidth
+              onClick={() => onClickCancelar()}
+            >
+              Cancelar
+            </Button>
+          </Grid>
+          <Grid item xs={3}>
+            <Button
+              variant="contained"
+              color="primary"
+              fullWidth
+              onClick={() => onClickEnviar()}
+            >
+              Enviar
+            </Button>
+          </Grid>
         </Grid>
       </Grid>
     </Card>
