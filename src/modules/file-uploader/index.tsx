@@ -6,17 +6,20 @@ import { Button, Grid, TextField } from "@material-ui/core";
 import Title from "../../elements/title";
 import { useState } from "react";
 import DropFileZone, { FileType } from "../../components/drop-file-area";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 type FileUploaderProps = {
   onClickSubir: (item: FileType, name: string) => void;
   onClickCancelar: () => void;
   open: boolean;
+  loading?: boolean;
 };
 
 function FileUploader({
   onClickSubir,
   onClickCancelar,
   open,
+  loading,
 }: FileUploaderProps) {
   const [name, setName] = useState("");
   const [items, setItems] = useState<FileType[]>([]);
@@ -36,12 +39,13 @@ function FileUploader({
     setItems(items);
   }
 
+  function cleanModal() {
+    setItems([]);
+    setName("");
+  }
+
   return (
-    <Modal
-      open={open}
-      aria-labelledby="simple-modal-title"
-      aria-describedby="simple-modal-description"
-    >
+    <Modal open={open}>
       <ModalContainer>
         <Card width="800px" height="auto" padding="20px">
           <Grid container spacing={5}>
@@ -72,9 +76,8 @@ function FileUploader({
                   color="primary"
                   fullWidth
                   onClick={() => {
-                    setItems([]);
-                    setName("");
                     onClickCancelar();
+                    cleanModal();
                   }}
                 >
                   Cancelar
@@ -85,14 +88,16 @@ function FileUploader({
                   variant="contained"
                   color="primary"
                   fullWidth
-                  onClick={() => {
-                    onClickSubir(items[0], name);
-                    setItems([]);
-                    setName("");
+                  onClick={async () => {
+                    debugger;
+                    await onClickSubir(items[0], name);
+                    cleanModal();
                   }}
-                  disabled={items.length === 0 || name.trim().length === 0}
+                  disabled={
+                    items.length === 0 || name.trim().length === 0 || loading
+                  }
                 >
-                  Subir
+                  {loading ? <CircularProgress size={"25px"} /> : "Subir"}
                 </Button>
               </Grid>
             </Grid>

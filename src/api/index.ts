@@ -1,7 +1,18 @@
 import axios from "axios";
 import { Config } from "../config";
+import { prospectData } from "../constants";
 
 export const http = axios.create({ baseURL: Config.apiUrl });
+
+export async function getPropspects() {
+  const response = await http.get("/prospects");
+  return response.data;
+}
+
+export async function getProspect(id: string) {
+  const response = await http.get(`/prospects/${id}`);
+  return response.data;
+}
 
 export async function uploadFile(file: File) {
   const form = new FormData();
@@ -12,4 +23,19 @@ export async function uploadFile(file: File) {
     },
   });
   return response.data.url;
+}
+
+export async function createProspect(prospect: prospectData) {
+  const response = await http.post("/prospects", prospect);
+  return response.data;
+}
+
+export async function updateProspectStatusById(
+  id: string,
+  status: "autorizado" | "rechazado"
+) {
+  const response = await http.patch(`/prospects/${id}/status`, {
+    status,
+  });
+  return response.data.n > 0 ? "ok" : "failed";
 }

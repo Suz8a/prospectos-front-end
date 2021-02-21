@@ -13,9 +13,11 @@ import AddIcon from "@material-ui/icons/Add";
 import { Button, Grid } from "@material-ui/core";
 import FileUploader from "../../modules/file-uploader";
 import { FileType } from "../../components/drop-file-area";
+import { uploadFile } from "../../api";
 
 function ProspectForm() {
   const [openModal, setOpenModal] = useState(false);
+  const [modalLoading, setModalLoading] = useState(false);
   const [formData, setFormData] = useState<prospectData>({
     nombre: "",
     primerApellido: "",
@@ -45,10 +47,8 @@ function ProspectForm() {
   }
 
   function onDeleteItem(index: number) {
-    console.log(index);
     const newData = { ...formData };
     newData.documentos.splice(index, 1);
-    console.log(newData);
     setFormData(newData);
   }
 
@@ -60,12 +60,13 @@ function ProspectForm() {
     setOpenModal(false);
   }
 
-  function onClickSubirArchivo(item: FileType, name: string) {
-    console.log(item);
-    console.log(name);
+  async function onClickSubirArchivo(item: FileType, name: string) {
     const newData = { ...formData };
-    newData.documentos.push({ name: name, url: item.preview });
-    closeModal();
+    setModalLoading(true);
+    newData.documentos.push({ name: name, url: await uploadFile(item) });
+    setModalLoading(false);
+
+    if (!modalLoading) closeModal();
   }
 
   return (
@@ -76,6 +77,7 @@ function ProspectForm() {
             open={openModal}
             onClickSubir={(item, name) => onClickSubirArchivo(item, name)}
             onClickCancelar={closeModal}
+            loading={modalLoading}
           />
         </Grid>
 
