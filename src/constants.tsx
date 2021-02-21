@@ -16,7 +16,7 @@ export type prospectData = {
   codigoPostal: string;
   telefono: string;
   rfc: string;
-  documentos: {}[];
+  documentos: { name: string; url: string }[];
 };
 
 export const datosPersonales = [

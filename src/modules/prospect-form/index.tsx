@@ -26,7 +26,7 @@ function ProspectForm() {
     codigoPostal: "",
     telefono: "",
     rfc: "",
-    documentos: [],
+    documentos: [{ name: "holi", url: "url" }],
   });
 
   function onChange(
@@ -46,6 +46,10 @@ function ProspectForm() {
 
   function onDeleteItem(index: number) {
     console.log(index);
+    const newData = { ...formData };
+    newData.documentos.splice(index, 1);
+    console.log(newData);
+    setFormData(newData);
   }
 
   function onAgregarDocumento() {
@@ -59,6 +63,8 @@ function ProspectForm() {
   function onClickSubirArchivo(item: FileType, name: string) {
     console.log(item);
     console.log(name);
+    const newData = { ...formData };
+    newData.documentos.push({ name: name, url: item.preview });
     closeModal();
   }
 
@@ -91,7 +97,7 @@ function ProspectForm() {
       <FormSectionItemsList
         buttonText="AGREGAR DOCUMENTO"
         icon={<AddIcon color="primary" />}
-        items={["1", "2"]}
+        items={formData.documentos.map((documento) => documento.name)}
         onDeleteItem={(index) => onDeleteItem(index)}
         onButtonClick={() => onAgregarDocumento()}
         padding="16px 0 30px 16px"
