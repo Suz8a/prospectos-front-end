@@ -8,7 +8,7 @@ import { useState } from "react";
 import DropFileZone, { FileType } from "../../components/drop-file-area";
 
 type FileUploaderProps = {
-  onClickSubir: () => void;
+  onClickSubir: (item: FileType, name: string) => void;
   onClickCancelar: () => void;
   open: boolean;
 };
@@ -39,7 +39,6 @@ function FileUploader({
   return (
     <Modal
       open={open}
-      onClose={() => {}}
       aria-labelledby="simple-modal-title"
       aria-describedby="simple-modal-description"
     >
@@ -72,7 +71,11 @@ function FileUploader({
                   variant="outlined"
                   color="primary"
                   fullWidth
-                  onClick={() => onClickCancelar()}
+                  onClick={() => {
+                    setItems([]);
+                    setName("");
+                    onClickCancelar();
+                  }}
                 >
                   Cancelar
                 </Button>
@@ -82,7 +85,12 @@ function FileUploader({
                   variant="contained"
                   color="primary"
                   fullWidth
-                  onClick={() => onClickSubir()}
+                  onClick={() => {
+                    onClickSubir(items[0], name);
+                    setItems([]);
+                    setName("");
+                  }}
+                  disabled={items.length === 0 || name.trim().length === 0}
                 >
                   Subir
                 </Button>

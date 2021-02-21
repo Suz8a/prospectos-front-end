@@ -12,6 +12,7 @@ import FormSectionItemsList from "../../components/form-section-items-list";
 import AddIcon from "@material-ui/icons/Add";
 import { Button, Grid } from "@material-ui/core";
 import FileUploader from "../../modules/file-uploader";
+import { FileType } from "../../components/drop-file-area";
 
 function ProspectForm() {
   const [openModal, setOpenModal] = useState(false);
@@ -55,11 +56,17 @@ function ProspectForm() {
     setOpenModal(false);
   }
 
+  function onClickSubirArchivo(item: FileType, name: string) {
+    console.log(item);
+    console.log(name);
+    closeModal();
+  }
+
   return (
     <Card width="80%" height="80%" padding="30px" borderRadius="5px">
       <FileUploader
         open={openModal}
-        onClickSubir={() => {}}
+        onClickSubir={(item, name) => onClickSubirArchivo(item, name)}
         onClickCancelar={closeModal}
       />
       <FormSection
