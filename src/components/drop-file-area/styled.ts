@@ -60,12 +60,13 @@ export const DropArea = styled.div`
   height: auto;
   width: 100%;
   border-radius: 4px;
-  padding: 20px;
+  padding: 10px;
   border: 1px dashed #00000058;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  user-select: none;
   & > * {
     opacity: 0;
     animation: ${showAnimation} 0.4s;
@@ -78,7 +79,7 @@ export const Item = styled.div`
   animation: ${showAnimation} 0.2s;
   width: auto;
   height: 40px;
-  font-size: 11px;
+  font-size: 15px;
   padding: 5px;
   border: 1px solid #00000058;
   border-radius: 10px;
@@ -110,6 +111,7 @@ export const UploadButton = styled.div<visibilityProps>`
 export const CancelIconContainer = styled.div`
   float: right;
   margin: auto 0 auto auto;
+
   &:hover {
     color: rgba(0, 0, 0, 0.5);
     cursor: pointer;

@@ -6,10 +6,8 @@ import {
   Description,
   DropArea,
   Item,
-  UploadButton,
   CancelIconContainer,
   CancelIcon,
-  ButtonDescription,
   DescriptionContainer,
 } from "./styled";
 import { Button } from "@material-ui/core";
