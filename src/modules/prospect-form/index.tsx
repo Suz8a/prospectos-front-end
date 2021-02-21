@@ -11,8 +11,10 @@ import { useState } from "react";
 import FormSectionItemsList from "../../components/form-section-items-list";
 import AddIcon from "@material-ui/icons/Add";
 import { Button, Grid } from "@material-ui/core";
+import FileUploader from "../../modules/file-uploader";
 
 function ProspectForm() {
+  const [openModal, setOpenModal] = useState(false);
   const [formData, setFormData] = useState<prospectData>({
     nombre: "",
     primerApellido: "",
@@ -46,11 +48,20 @@ function ProspectForm() {
   }
 
   function onAgregarDocumento() {
-    console.log("agregar documento");
+    setOpenModal(true);
+  }
+
+  function closeModal() {
+    setOpenModal(false);
   }
 
   return (
     <Card width="80%" height="80%" padding="30px" borderRadius="5px">
+      <FileUploader
+        open={openModal}
+        onClickSubir={() => {}}
+        onClickCancelar={closeModal}
+      />
       <FormSection
         currentValues={formData}
         title="Datos personales"

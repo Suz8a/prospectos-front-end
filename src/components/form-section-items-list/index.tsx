@@ -15,7 +15,6 @@ import Button from "@material-ui/core/Button";
 import InsertDriveFileIcon from "@material-ui/icons/InsertDriveFile";
 import FormSectionContainer from "../../elements/form-section-container";
 import CancelIcon from "@material-ui/icons/Cancel";
-import FileUploader from "../../modules/file-uploader";
 
 type FormSectionItemsListProps = {
   buttonText: string;
@@ -36,7 +35,6 @@ function FormSectionItemsList({
 }: FormSectionItemsListProps) {
   return (
     <FormSectionContainer padding={padding}>
-      <FileUploader onClickSubir={() => {}} onClickCancelar={() => {}} />
       <Grid container>
         <Grid item xs={9}>
           <Title text="Documentos" />

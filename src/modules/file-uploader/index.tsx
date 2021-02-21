@@ -10,9 +10,14 @@ import DropFileZone, { FileType } from "../../components/drop-file-area";
 type FileUploaderProps = {
   onClickSubir: () => void;
   onClickCancelar: () => void;
+  open: boolean;
 };
 
-function FileUploader({ onClickSubir, onClickCancelar }: FileUploaderProps) {
+function FileUploader({
+  onClickSubir,
+  onClickCancelar,
+  open,
+}: FileUploaderProps) {
   const [name, setName] = useState("");
   const [items, setItems] = useState<FileType[]>([]);
 
@@ -22,21 +27,18 @@ function FileUploader({ onClickSubir, onClickCancelar }: FileUploaderProps) {
     setName(e.target.value);
   }
   function onDelete(index: number) {
-    console.log(index);
     const newItems = [...items];
     newItems.splice(index, 1);
     setItems(newItems);
-    console.log(items);
   }
 
   function onSetItems(items: FileType[]) {
     setItems(items);
-    console.log(items);
   }
 
   return (
     <Modal
-      open={true}
+      open={open}
       onClose={() => {}}
       aria-labelledby="simple-modal-title"
       aria-describedby="simple-modal-description"
