@@ -100,7 +100,7 @@ function ProspectForm() {
         items={formData.documentos.map((documento) => documento.name)}
         onDeleteItem={(index) => onDeleteItem(index)}
         onButtonClick={() => onAgregarDocumento()}
-        padding="16px 0 30px 16px"
+        padding="16px 0 30px 0px"
       />
 
       <Grid container spacing={3} justify="flex-end">
