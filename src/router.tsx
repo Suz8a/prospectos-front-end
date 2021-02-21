@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, useHistory } from "react-router-dom";
+import { Switch, Route, useHistory, Redirect } from "react-router-dom";
 import Content from "./containers/content";
 import SideBar from "./modules/side-bar";
 import Section from "./containers/section";
@@ -22,6 +22,9 @@ export const Router = () => {
             path="/prospects"
             component={() => <div>todos los prospectos</div>}
           />
+          <Route exact path="/">
+            <Redirect to="/prospects" />
+          </Route>
         </Switch>
       </Content>
     </Section>
