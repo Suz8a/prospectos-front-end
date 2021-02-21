@@ -26,7 +26,7 @@ function ProspectForm() {
     codigoPostal: "",
     telefono: "",
     rfc: "",
-    documentos: [{ name: "holi", url: "url" }],
+    documentos: [],
   });
 
   function onChange(
