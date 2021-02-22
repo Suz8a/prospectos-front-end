@@ -1,10 +1,18 @@
-import React from "react";
+import React, { ReactNode } from "react";
+import { IconTextContainer, TextContainer } from "./styled";
 
-function IconText() {
+type IconTextProps = {
+  icon: ReactNode;
+  text: string;
+  color?: string;
+};
+
+function IconText({ icon, text, color }: IconTextProps) {
   return (
-    <div>
-      <div></div>
-    </div>
+    <IconTextContainer>
+      {icon}
+      <TextContainer color={color}>{text}</TextContainer>
+    </IconTextContainer>
   );
 }
 

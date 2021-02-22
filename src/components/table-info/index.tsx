@@ -8,15 +8,28 @@ import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import { useState } from "react";
 import Card from "../../elements/card";
+import { makeStyles } from "@material-ui/core/styles";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import { LoadingContainer } from "./styled";
 
 type TableInfoProps<T> = {
   columns: { id: string; label: string; minWidth?: number }[];
   rows: T[];
+  loading?: boolean;
 };
 
-function TableInfo<T>({ columns, rows }: TableInfoProps<T>) {
+const useStyles = makeStyles({
+  row: {
+    "&:hover": {
+      cursor: "pointer",
+    },
+  },
+});
+
+function TableInfo<T>({ columns, rows, loading }: TableInfoProps<T>) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const classes = useStyles();
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -46,25 +59,42 @@ function TableInfo<T>({ columns, rows }: TableInfoProps<T>) {
               ))}
             </TableRow>
           </TableHead>
-          <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row, index) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={index}>
-                    {columns.map((column) => {
-                      const value = (row as any)[column.id];
-                      return (
-                        <TableCell key={column.id} align="left">
-                          {value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
-          </TableBody>
+          {!loading && (
+            <TableBody>
+              {rows
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((row, index) => {
+                  return (
+                    <TableRow
+                      hover
+                      role="checkbox"
+                      tabIndex={-1}
+                      key={index}
+                      onClick={() => {
+                        console.log(index);
+                      }}
+                      className={classes.row}
+                    >
+                      {columns.map((column) => {
+                        const value = (row as any)[column.id];
+                        return (
+                          <TableCell key={column.id} align="left">
+                            {value}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  );
+                })}
+            </TableBody>
+          )}
         </Table>
+
+        {loading && (
+          <LoadingContainer>
+            <CircularProgress size="40px" />
+          </LoadingContainer>
+        )}
       </TableContainer>
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
