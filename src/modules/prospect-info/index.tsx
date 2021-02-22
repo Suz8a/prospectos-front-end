@@ -141,7 +141,7 @@ function ProspectInfo() {
             {prospect?.estatus === "rechazado" && (
               <Grid item xs={12}>
                 <InfoSection
-                  title="Estatus"
+                  title="Motivo"
                   data={motivoRechazo}
                   multiline={true}
                   rows={6}
