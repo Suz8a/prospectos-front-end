@@ -72,8 +72,9 @@ function ModalRechazo({
                     await onClickAceptar(motivo);
                     cleanModal();
                   }}
+                  disabled={motivo.trim().length === 0}
                 >
-                  Subir
+                  Aceptar
                 </Button>
               </Grid>
             </Grid>
