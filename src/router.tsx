@@ -5,6 +5,7 @@ import SideBar from "./modules/side-bar";
 import Section from "./containers/section";
 import ProspectForm from "./modules/prospect-form";
 import ProspectsList from "./modules/prospects-list";
+import ProspectInfo from "./modules/prospect-info";
 
 export const Router = () => {
   const history = useHistory();
@@ -19,6 +20,7 @@ export const Router = () => {
         <Switch>
           <Route exact path="/prospects/new" component={ProspectForm} />
           <Route exact path="/prospects" component={ProspectsList} />
+          <Route exact path="/prospect/:id" component={ProspectInfo} />
           <Route exact path="/">
             <Redirect to="/prospects" />
           </Route>

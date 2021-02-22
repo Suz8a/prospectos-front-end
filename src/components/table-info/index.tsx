@@ -16,6 +16,7 @@ type TableInfoProps<T> = {
   columns: { id: string; label: string; minWidth?: number }[];
   rows: T[];
   loading?: boolean;
+  onItemClick: (index: number) => void;
 };
 
 const useStyles = makeStyles({
@@ -26,7 +27,12 @@ const useStyles = makeStyles({
   },
 });
 
-function TableInfo<T>({ columns, rows, loading }: TableInfoProps<T>) {
+function TableInfo<T>({
+  columns,
+  rows,
+  loading,
+  onItemClick,
+}: TableInfoProps<T>) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const classes = useStyles();
@@ -70,9 +76,7 @@ function TableInfo<T>({ columns, rows, loading }: TableInfoProps<T>) {
                       role="checkbox"
                       tabIndex={-1}
                       key={index}
-                      onClick={() => {
-                        console.log(index);
-                      }}
+                      onClick={() => onItemClick(index)}
                       className={classes.row}
                     >
                       {columns.map((column) => {
@@ -89,7 +93,6 @@ function TableInfo<T>({ columns, rows, loading }: TableInfoProps<T>) {
             </TableBody>
           )}
         </Table>
-
         {loading && (
           <LoadingContainer>
             <CircularProgress size="40px" />

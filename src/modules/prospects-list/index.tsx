@@ -8,10 +8,12 @@ import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 import CancelIcon from "@material-ui/icons/Cancel";
 import IconText from "../../components/icon-text";
+import { useHistory } from "react-router-dom";
 
 function ProspectsList() {
   const [prospects, setProspects] = useState([]);
   const [loadingTable, setLoadingTable] = useState(false);
+  const history = useHistory();
   const statusesTag = {
     autorizado: (
       <IconText
@@ -57,9 +59,18 @@ function ProspectsList() {
     })();
   }, [setProspects, setLoadingTable]);
 
+  function onItemClick(index: number) {
+    history.push(`/prospect/${(prospects as any)[index]._id}`);
+  }
+
   return (
     <Card width="80%" height="80%" padding="0px" borderRadius="5px">
-      <TableInfo columns={columns} rows={rows} loading={loadingTable} />
+      <TableInfo
+        columns={columns}
+        rows={rows}
+        loading={loadingTable}
+        onItemClick={(index) => onItemClick(index)}
+      />
     </Card>
   );
 }
