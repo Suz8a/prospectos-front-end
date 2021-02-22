@@ -19,6 +19,19 @@ export type prospectData = {
   documentos: { name: string; url: string }[];
 };
 
+export const prospectInitialData = {
+  nombre: "",
+  primerApellido: "",
+  segundoApellido: "",
+  calle: "",
+  numero: "",
+  colonia: "",
+  codigoPostal: "",
+  telefono: "",
+  rfc: "",
+  documentos: [],
+};
+
 export const datosPersonales = [
   {
     id: "nombre",
@@ -35,7 +48,7 @@ export const datosPersonales = [
   {
     id: "segundoApellido",
     title: "Apellido materno",
-    required: true,
+    required: false,
     type: "string",
   },
   {

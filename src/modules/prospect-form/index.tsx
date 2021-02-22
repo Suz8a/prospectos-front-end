@@ -6,18 +6,28 @@ import {
   datosPersonales,
   direccion,
   contacto,
+  prospectInitialData,
 } from "../../constants";
 import { useState } from "react";
 import FormSectionItemsList from "../../components/form-section-items-list";
 import AddIcon from "@material-ui/icons/Add";
-import { Button, Grid } from "@material-ui/core";
+import { Button, CircularProgress, Grid } from "@material-ui/core";
 import FileUploader from "../../modules/file-uploader";
 import { FileType } from "../../components/drop-file-area";
-import { uploadFile } from "../../api";
+import { createProspect, uploadFile } from "../../api";
+import MuiAlert, { AlertProps, Color } from "@material-ui/lab/Alert";
+import Snackbar from "@material-ui/core/Snackbar";
+
+function Alert(props: AlertProps) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 function ProspectForm() {
+  const [alertSeverity, setAlertSeverity] = useState<Color>("success");
+  const [openNotification, setOpenNotification] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [modalLoading, setModalLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState<prospectData>({
     nombre: "",
     primerApellido: "",
@@ -31,6 +41,27 @@ function ProspectForm() {
     documentos: [],
   });
 
+  const alertMessages: { [key: string]: string } = {
+    success: "Prospecto enviado con exito",
+    error: "Error en enviar prospecto",
+  };
+
+  const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenNotification(false);
+  };
+
+  const showSuccessMessage = () => {
+    setAlertSeverity("success");
+    setOpenNotification(true);
+  };
+  const showErrorMessage = () => {
+    setAlertSeverity("error");
+    setOpenNotification(true);
+  };
+
   function onChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     id: string
@@ -38,8 +69,18 @@ function ProspectForm() {
     setFormData({ ...formData, [id]: e.target.value });
   }
 
-  function onClickEnviar() {
-    console.log("click enviar");
+  async function onClickEnviar() {
+    try {
+      setLoading(true);
+      await createProspect(formData);
+      cleanForm();
+      setLoading(false);
+      showSuccessMessage();
+    } catch {
+      console.log("error en crear prospecto");
+      showErrorMessage();
+      setLoading(false);
+    }
   }
 
   function onClickCancelar() {
@@ -58,6 +99,10 @@ function ProspectForm() {
 
   function closeModal() {
     setOpenModal(false);
+  }
+
+  function cleanForm() {
+    setFormData(prospectInitialData);
   }
 
   async function onClickSubirArchivo(item: FileType, name: string) {
@@ -118,7 +163,7 @@ function ProspectForm() {
           />
         </Grid>
 
-        <Grid container item xs={12} spacing={3} justify="flex-end">
+        <Grid container item spacing={3} justify="flex-end">
           <Grid item xs={3}>
             <Button
               variant="outlined"
@@ -135,12 +180,22 @@ function ProspectForm() {
               color="primary"
               fullWidth
               onClick={() => onClickEnviar()}
+              disabled={JSON.stringify(formData).includes('""') || loading}
             >
-              Enviar
+              {loading ? <CircularProgress size={"25px"} /> : "Enviar"}
             </Button>
           </Grid>
         </Grid>
       </Grid>
+      <Snackbar
+        open={openNotification}
+        autoHideDuration={6000}
+        onClose={handleClose}
+      >
+        <Alert onClose={handleClose} severity={alertSeverity}>
+          {alertMessages[alertSeverity]}
+        </Alert>
+      </Snackbar>
     </Card>
   );
 }
