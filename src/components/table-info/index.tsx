@@ -65,7 +65,7 @@ function TableInfo<T>({
               ))}
             </TableRow>
           </TableHead>
-          {!loading && (
+          {!loading && rows.length !== 0 && (
             <TableBody>
               {rows
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
@@ -93,9 +93,9 @@ function TableInfo<T>({
             </TableBody>
           )}
         </Table>
-        {loading && (
+        {rows.length === 0 && (
           <LoadingContainer>
-            <CircularProgress size="40px" />
+            {loading && <CircularProgress size="40px" />}
           </LoadingContainer>
         )}
       </TableContainer>
