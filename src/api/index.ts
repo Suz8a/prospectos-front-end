@@ -32,10 +32,12 @@ export async function createProspect(prospect: prospectData) {
 
 export async function updateProspectStatusById(
   id: string,
-  status: "autorizado" | "rechazado"
+  status: "autorizado" | "rechazado",
+  motivoRechazo: string
 ) {
   const response = await http.patch(`/prospects/${id}/status`, {
     status,
+    motivoRechazo,
   });
   return response.data.n > 0 ? "ok" : "failed";
 }

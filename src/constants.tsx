@@ -16,6 +16,7 @@ export type prospectData = {
   codigoPostal: string;
   telefono: string;
   rfc: string;
+  motivoRechazo?: string;
   documentos: { name: string; url: string }[];
 };
 

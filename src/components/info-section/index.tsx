@@ -10,9 +10,27 @@ type InfoSectionProps = {
     title: string;
     value: string | undefined;
   }[];
+  multiline?: boolean;
+  rows?: number;
+  xs:
+    | boolean
+    | "auto"
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | undefined;
 };
 
-function InfoSection({ title, data }: InfoSectionProps) {
+function InfoSection({ title, data, multiline, rows, xs }: InfoSectionProps) {
   return (
     <FormSectionContainer padding="0px">
       <Grid container spacing={3}>
@@ -20,7 +38,7 @@ function InfoSection({ title, data }: InfoSectionProps) {
           <Title text={title} />
         </Grid>
         {data.map(({ title, value }, index) => (
-          <Grid item xs={4} key={index}>
+          <Grid item xs={xs} key={index}>
             <TextField
               label={title}
               value={value}
@@ -32,6 +50,8 @@ function InfoSection({ title, data }: InfoSectionProps) {
               }}
               tabIndex={-1}
               style={{ userSelect: "none" }}
+              multiline={multiline}
+              rows={rows ? rows : 1}
             />
           </Grid>
         ))}
