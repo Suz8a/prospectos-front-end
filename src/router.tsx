@@ -4,6 +4,7 @@ import Content from "./containers/content";
 import SideBar from "./modules/side-bar";
 import Section from "./containers/section";
 import ProspectForm from "./modules/prospect-form";
+import ProspectsList from "./modules/prospects-list";
 
 export const Router = () => {
   const history = useHistory();
@@ -17,11 +18,7 @@ export const Router = () => {
       <Content>
         <Switch>
           <Route exact path="/prospects/new" component={ProspectForm} />
-          <Route
-            exact
-            path="/prospects"
-            component={() => <div>todos los prospectos</div>}
-          />
+          <Route exact path="/prospects" component={ProspectsList} />
           <Route exact path="/">
             <Redirect to="/prospects" />
           </Route>
