@@ -180,7 +180,11 @@ function ProspectForm() {
               color="primary"
               fullWidth
               onClick={() => onClickEnviar()}
-              disabled={JSON.stringify(formData).includes('""') || loading}
+              disabled={
+                JSON.stringify({ ...formData, segundoApellido: "-" }).includes(
+                  '""'
+                ) || loading
+              }
             >
               {loading ? <CircularProgress size={"25px"} /> : "Enviar"}
             </Button>
