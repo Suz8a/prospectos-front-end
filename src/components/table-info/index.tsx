@@ -50,7 +50,7 @@ function TableInfo<T>({
 
   return (
     <Card width="100%" height="100%" padding="0px" borderRadius="5px">
-      <TableContainer style={{ maxHeight: "500px" }}>
+      <TableContainer style={{ maxHeight: "500px", minHeight: "400px" }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>

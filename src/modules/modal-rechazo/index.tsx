@@ -3,7 +3,6 @@ import Modal from "@material-ui/core/Modal";
 import Card from "../../elements/card";
 import { ModalContainer } from "./styled";
 import { Button, Grid, TextField } from "@material-ui/core";
-import Title from "../../elements/title";
 import { useState } from "react";
 
 type FileUploaderProps = {
@@ -34,9 +33,6 @@ function ModalRechazo({
       <ModalContainer>
         <Card width="800px" height="auto" padding="20px">
           <Grid container spacing={5}>
-            <Grid item xs={12}>
-              <Title text="Subir archivo" />
-            </Grid>
             <Grid item xs={12}>
               <TextField
                 label="Motivo del Rechazo"
