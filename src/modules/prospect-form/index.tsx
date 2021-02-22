@@ -183,7 +183,9 @@ function ProspectForm() {
               disabled={
                 JSON.stringify({ ...formData, segundoApellido: "-" }).includes(
                   '""'
-                ) || loading
+                ) ||
+                loading ||
+                formData.documentos.length === 0
               }
             >
               {loading ? <CircularProgress size={"25px"} /> : "Enviar"}
