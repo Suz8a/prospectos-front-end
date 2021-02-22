@@ -1,4 +1,4 @@
-import { CircularProgress, Grid } from "@material-ui/core";
+import { Button, CircularProgress, Grid } from "@material-ui/core";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -6,21 +6,18 @@ import InfoSection from "../../components/info-section";
 import { prospectData } from "../../constants";
 import Card from "../../elements/card";
 import { useParams } from "react-router-dom";
-import { getProspect } from "../../api";
+import { getProspect, updateProspectStatusById } from "../../api";
 import { LoadingContainer } from "./styled";
 import InfoSectionItemsList from "../../components/info-section-items-list";
+import { useHistory } from "react-router-dom";
 
-type ProspectInfoProps = {
-  onAutorizar: () => void;
-  onRechazar: () => void;
-};
-
-function ProspectInfo({ onAutorizar, onRechazar }: ProspectInfoProps) {
+function ProspectInfo() {
   const [loading, setLoading] = useState(false);
   const [prospect, setProspect] = useState<
     (prospectData & { id: string; estatus: string }) | undefined
   >(undefined);
   const { id } = useParams() as any;
+  const history = useHistory();
   const datosPersonales: { title: string; value: string | undefined }[] = [
     {
       title: "Nombre",
@@ -66,6 +63,13 @@ function ProspectInfo({ onAutorizar, onRechazar }: ProspectInfoProps) {
     },
   ];
 
+  const estatus: { title: string; value: string | undefined }[] = [
+    {
+      title: "Estatus",
+      value: prospect?.estatus,
+    },
+  ];
+
   useEffect(() => {
     (async () => {
       setLoading(true);
@@ -74,10 +78,19 @@ function ProspectInfo({ onAutorizar, onRechazar }: ProspectInfoProps) {
     })();
   }, [setProspect, id]);
 
+  async function onClickAutorizar() {
+    debugger;
+    setLoading(true);
+    await updateProspectStatusById(id, "autorizado");
+    history.push("/prospects");
+    setLoading(false);
+  }
+  function onClickRechazar() {}
+
   return (
     <Card width="80%" height="80%" padding="30px" borderRadius="5px">
       <Grid container spacing={2}>
-        {!loading ? (
+        {prospect ? (
           <>
             <Grid item xs={12}>
               <InfoSection title="Datos personales" data={datosPersonales} />
@@ -88,6 +101,11 @@ function ProspectInfo({ onAutorizar, onRechazar }: ProspectInfoProps) {
             <Grid item xs={12}>
               <InfoSection title="Contacto" data={contacto} />
             </Grid>
+            {prospect?.estatus !== "enviado" && (
+              <Grid item xs={12}>
+                <InfoSection title="Estatus" data={estatus} />
+              </Grid>
+            )}
             <Grid item xs={12}>
               <InfoSectionItemsList items={prospect?.documentos} />
             </Grid>
@@ -96,6 +114,32 @@ function ProspectInfo({ onAutorizar, onRechazar }: ProspectInfoProps) {
           <LoadingContainer>
             <CircularProgress size="40px" />
           </LoadingContainer>
+        )}
+        {prospect?.estatus === "enviado" && (
+          <Grid container item spacing={3} justify="flex-end">
+            <Grid item xs={3}>
+              <Button
+                variant="outlined"
+                color="primary"
+                fullWidth
+                onClick={() => onClickRechazar()}
+                disabled={loading}
+              >
+                {loading ? <CircularProgress size={"25px"} /> : "Rechazar"}
+              </Button>
+            </Grid>
+            <Grid item xs={3}>
+              <Button
+                variant="contained"
+                color="primary"
+                fullWidth
+                onClick={() => onClickAutorizar()}
+                disabled={loading}
+              >
+                {loading ? <CircularProgress size={"25px"} /> : "Autorizar"}
+              </Button>
+            </Grid>
+          </Grid>
         )}
       </Grid>
     </Card>

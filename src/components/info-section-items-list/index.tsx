@@ -40,7 +40,7 @@ function InfoSectionItemsList({ items, padding }: InfoSectionItemsListProps) {
                   </ListItemAvatar>
                   <ListItemText primary={name} />
                   <ListItemSecondaryAction>
-                    <a href={url} target="_blank">
+                    <a href={url}>
                       <IconButton edge="end" aria-label="download">
                         <GetAppIcon />
                       </IconButton>
