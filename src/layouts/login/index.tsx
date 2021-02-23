@@ -4,6 +4,7 @@ import { useState } from "react";
 import Section from "../../containers/section";
 import Card from "../../elements/card";
 import { IoPersonCircleSharp } from "react-icons/io5";
+import { getLogin } from "../../api";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -21,14 +22,18 @@ function Login() {
     setPassword(e.target.value);
   }
 
-  function onClickEntrar() {}
+  async function onClickEntrar() {
+    setLoading(true);
+    await getLogin({ username, password });
+    setLoading(false);
+  }
 
   return (
     <Section justifyContent="center" alignItems="center">
       <Card width="400px" height="auto" borderRadius="5px" padding="20px">
         <Grid container spacing={5} justify="center">
           <Grid item>
-            <IoPersonCircleSharp size={"200px"} />
+            <IoPersonCircleSharp size={"180px"} />
           </Grid>
           <Grid item xs={12}>
             <TextField

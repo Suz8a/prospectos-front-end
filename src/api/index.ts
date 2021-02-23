@@ -41,3 +41,8 @@ export async function updateProspectStatusById(
   });
   return response.data.n > 0 ? "ok" : "failed";
 }
+
+export async function getLogin(user: { username: string; password: string }) {
+  const response = await http.post("/auth/login", user);
+  return response.data.access_token;
+}
