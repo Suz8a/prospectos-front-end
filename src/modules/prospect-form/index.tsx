@@ -17,6 +17,7 @@ import { FileType } from "../../components/drop-file-area";
 import { createProspect, uploadFile } from "../../api";
 import MuiAlert, { AlertProps, Color } from "@material-ui/lab/Alert";
 import Snackbar from "@material-ui/core/Snackbar";
+import { useHistory } from "react-router-dom";
 
 function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -40,6 +41,7 @@ function ProspectForm() {
     rfc: "",
     documentos: [],
   });
+  const history = useHistory();
 
   const alertMessages: { [key: string]: string } = {
     success: "Prospecto enviado con exito",
@@ -84,7 +86,12 @@ function ProspectForm() {
   }
 
   function onClickCancelar() {
-    console.log("click cancelar");
+    if (
+      window.confirm(
+        "Si sales de esta pagina perderas todos los datos ingresados, ¿Continuar?"
+      )
+    )
+      history.push("/main/prospects");
   }
 
   function onDeleteItem(index: number) {

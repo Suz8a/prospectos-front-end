@@ -25,7 +25,7 @@ export const Router = () => {
               <Route exact path="/main/prospects" component={ProspectsList} />
               <Route path="/main/prospects/new" component={ProspectForm} />
               <Route path="/main/prospect/:id" component={ProspectInfo} />
-              <Redirect to="/main/prospects/new" />
+              <Redirect to="/main/prospects" />
             </>
           ) : (
             <>

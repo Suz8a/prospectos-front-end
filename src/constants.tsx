@@ -6,12 +6,13 @@ export const evaluadorSideBarOptions = [
 ];
 
 export const promotorSideBarOptions = [
+  { option: "Prospectos", icon: <ViewListIcon />, url: "/main/prospects" },
+
   {
     option: "Nuevo prospecto",
     icon: <PersonAddIcon />,
     url: "/main/prospects/new",
   },
-  { option: "Prospectos", icon: <ViewListIcon />, url: "/main/prospects" },
 ];
 
 export type prospectData = {

@@ -25,4 +25,5 @@ export const TextContainer = styled.div`
   align-items: center;
   text-align: left;
   padding-left: 10px;
+  text-transform: capitalize;
 `;

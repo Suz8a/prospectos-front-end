@@ -34,7 +34,7 @@ function SideBar({ onOptionClick }: SideBarProps) {
   return (
     <Card width="280px" height="" padding="0px" position="fixed">
       <SideBarContainer>
-        <AccountInfo name="Adriana Ochoa" />
+        <AccountInfo name={username} />
         <ListContainer>
           <List component="nav">
             {sideBarOptions.map(({ option, icon, url }, index) => (
