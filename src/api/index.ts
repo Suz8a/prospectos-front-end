@@ -44,5 +44,5 @@ export async function updateProspectStatusById(
 
 export async function getLogin(user: { username: string; password: string }) {
   const response = await http.post("/auth/login", user);
-  return response.data.access_token;
+  return response.data;
 }

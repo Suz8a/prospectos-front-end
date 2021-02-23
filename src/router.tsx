@@ -6,28 +6,34 @@ import Section from "./containers/section";
 import ProspectForm from "./modules/prospect-form";
 import ProspectsList from "./modules/prospects-list";
 import ProspectInfo from "./modules/prospect-info";
-import { useDispatch, useSelector } from "react-redux";
-import { getUser, setUser } from "./store/actions";
+import { useSelector } from "react-redux";
 
 export const Router = () => {
   const history = useHistory();
-  const dispatch = useDispatch();
-  const { user } = useSelector<any, any>((state) => state);
-
+  const { username } = useSelector<any, any>((state) => state);
   function onOptionClick(url: string) {
     history.push(url);
   }
+  console.log(username);
   return (
     <Section>
       <SideBar onOptionClick={(url) => onOptionClick(url)} />
       <Content>
         <Switch>
-          <Route exact path="/prospects/new" component={ProspectForm} />
-          <Route exact path="/prospects" component={ProspectsList} />
-          <Route exact path="/prospect/:id" component={ProspectInfo} />
-          <Route exact path="/">
-            <Redirect to="/login" />
-          </Route>
+          {username === "promotor" ? (
+            <>
+              <Route exact path="/main/prospects" component={ProspectsList} />
+              <Route path="/main/prospects/new" component={ProspectForm} />
+              <Route path="/main/prospect/:id" component={ProspectInfo} />
+              <Redirect to="/main/prospects/new" />
+            </>
+          ) : (
+            <>
+              <Route path="/main/prospects" component={ProspectsList} />
+              <Route path="/main/prospect/:id" component={ProspectInfo} />
+              <Redirect to="/main/prospects" />
+            </>
+          )}
         </Switch>
       </Content>
     </Section>

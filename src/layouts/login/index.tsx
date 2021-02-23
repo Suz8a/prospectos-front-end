@@ -8,6 +8,7 @@ import { getLogin } from "../../api";
 import { useDispatch } from "react-redux";
 import { setToken, setUser } from "../../store/actions";
 import { useHistory } from "react-router-dom";
+import { useEffect } from "react";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -34,8 +35,9 @@ function Login() {
       const response = await getLogin({ username, password });
       dispatch(setUser(username));
       dispatch(setToken(response.access_token));
+      localStorage.setItem("username", username);
+      localStorage.setItem("access_token", response.access_token);
       setShowErrors(false);
-      history.push("/main");
     } catch {
       setShowErrors(true);
     }

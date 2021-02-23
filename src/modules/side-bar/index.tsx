@@ -3,10 +3,12 @@ import React from "react";
 import AccountInfo from "../../components/account-info";
 import { sideBarOptions } from "../../constants";
 import Card from "../../elements/card";
-import { ListContainer, SideBarContainer } from "./styled";
-import { useSelector } from "react-redux";
+import { ExitContainer, ListContainer, SideBarContainer } from "./styled";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import { setToken, setUser } from "../../store/actions";
 
 type SideBarProps = {
   onOptionClick: (url: string) => void;
@@ -14,11 +16,15 @@ type SideBarProps = {
 
 function SideBar({ onOptionClick }: SideBarProps) {
   const history = useHistory();
-  const { user } = useSelector<any, any>((state) => state);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (!user) history.push("/");
-  }, [user, history]);
+  function onOptionSalir() {
+    history.push("/");
+    dispatch(setUser(""));
+    dispatch(setToken(""));
+    localStorage.removeItem("username");
+    localStorage.removeItem("access_token");
+  }
 
   return (
     <Card width="280px" height="" padding="0px" position="fixed">
@@ -34,6 +40,18 @@ function SideBar({ onOptionClick }: SideBarProps) {
             ))}
           </List>
         </ListContainer>
+        <ExitContainer>
+          <ListContainer>
+            <List component="nav">
+              <ListItem button onClick={() => onOptionSalir()}>
+                <ListItemIcon>
+                  <ExitToAppIcon />
+                </ListItemIcon>
+                <ListItemText primary="Salir" />
+              </ListItem>
+            </List>
+          </ListContainer>
+        </ExitContainer>
       </SideBarContainer>
     </Card>
   );

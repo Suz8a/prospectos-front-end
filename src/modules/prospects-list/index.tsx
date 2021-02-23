@@ -60,7 +60,7 @@ function ProspectsList() {
   }, [setProspects, setLoadingTable]);
 
   function onItemClick(index: number) {
-    history.push(`/prospect/${(prospects as any)[index]._id}`);
+    history.push(`/main/prospect/${(prospects as any)[index]._id}`);
   }
 
   return (

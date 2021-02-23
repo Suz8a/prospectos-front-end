@@ -13,3 +13,9 @@ export const ListContainer = styled.div`
   width: 100%;
   height: fit-content;
 `;
+
+export const ExitContainer = styled.div`
+  width: 100%;
+  height: auto;
+  margin-top: auto;
+`;
