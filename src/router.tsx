@@ -6,6 +6,7 @@ import Section from "./containers/section";
 import ProspectForm from "./modules/prospect-form";
 import ProspectsList from "./modules/prospects-list";
 import ProspectInfo from "./modules/prospect-info";
+import Login from "./layouts/login";
 
 export const Router = () => {
   const history = useHistory();
@@ -14,18 +15,21 @@ export const Router = () => {
     history.push(url);
   }
   return (
-    <Section>
-      <SideBar onOptionClick={(url) => onOptionClick(url)} />
+    <>
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/main">
+        <SideBar onOptionClick={(url) => onOptionClick(url)} />
+      </Route>
       <Content>
         <Switch>
           <Route exact path="/prospects/new" component={ProspectForm} />
           <Route exact path="/prospects" component={ProspectsList} />
           <Route exact path="/prospect/:id" component={ProspectInfo} />
           <Route exact path="/">
-            <Redirect to="/prospects" />
+            <Redirect to="/login" />
           </Route>
         </Switch>
       </Content>
-    </Section>
+    </>
   );
 };

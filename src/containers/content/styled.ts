@@ -5,7 +5,7 @@ export const ContentContainer = styled.div`
   margin-left: auto;
   height: 100%;
   min-height: 800px;
-  background-color: #f0f0f0;
+  background-color: inherit;
   display: flex;
   align-items: center;
   justify-content: center;
