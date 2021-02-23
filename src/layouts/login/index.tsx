@@ -5,11 +5,15 @@ import Section from "../../containers/section";
 import Card from "../../elements/card";
 import { IoPersonCircleSharp } from "react-icons/io5";
 import { getLogin } from "../../api";
+import { useDispatch } from "react-redux";
+import { setToken, setUser } from "../../store/actions";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showErrors, setShowErrors] = useState(false);
+  const dispatch = useDispatch();
 
   function onUserNameChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -24,7 +28,14 @@ function Login() {
 
   async function onClickEntrar() {
     setLoading(true);
-    await getLogin({ username, password });
+    try {
+      const response = await getLogin({ username, password });
+      dispatch(setUser(username));
+      dispatch(setToken(response.access_token));
+      setShowErrors(false);
+    } catch {
+      setShowErrors(true);
+    }
     setLoading(false);
   }
 
@@ -45,6 +56,7 @@ function Login() {
               onChange={(e) => onUserNameChange(e)}
               size="small"
               fullWidth
+              error={showErrors}
             />
           </Grid>
           <Grid item xs={12}>
@@ -58,6 +70,7 @@ function Login() {
               onChange={(e) => onPasswordChange(e)}
               size="small"
               fullWidth
+              error={showErrors}
             />
           </Grid>
           <Grid container item spacing={3} alignItems="flex-end">
@@ -67,7 +80,9 @@ function Login() {
                 color="primary"
                 fullWidth
                 onClick={() => onClickEntrar()}
-                disabled={username.length === 0 || password.length === 0}
+                disabled={
+                  username.length === 0 || password.length === 0 || loading
+                }
               >
                 {loading ? <CircularProgress size={"25px"} /> : "Entrar"}
               </Button>
