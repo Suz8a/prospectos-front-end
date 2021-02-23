@@ -4,6 +4,10 @@ import { prospectData } from "../constants";
 
 export const http = axios.create({ baseURL: Config.apiUrl });
 
+function getHeaders() {
+  return { authorization: `bearer ${localStorage.getItem("access_token")}` };
+}
+
 export async function getPropspects() {
   const response = await http.get("/prospects");
   return response.data;
@@ -26,7 +30,9 @@ export async function uploadFile(file: File) {
 }
 
 export async function createProspect(prospect: prospectData) {
-  const response = await http.post("/prospects", prospect);
+  const response = await http.post("/prospects", prospect, {
+    headers: getHeaders(),
+  });
   return response.data;
 }
 
@@ -35,10 +41,14 @@ export async function updateProspectStatusById(
   status: "autorizado" | "rechazado",
   motivoRechazo: string
 ) {
-  const response = await http.patch(`/prospects/${id}/status`, {
-    status,
-    motivoRechazo,
-  });
+  const response = await http.patch(
+    `/prospects/${id}/status`,
+    {
+      status,
+      motivoRechazo,
+    },
+    { headers: getHeaders() }
+  );
   return response.data.n > 0 ? "ok" : "failed";
 }
 

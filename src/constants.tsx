@@ -1,7 +1,11 @@
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import ViewListIcon from "@material-ui/icons/ViewList";
 
-export const sideBarOptions = [
+export const evaluadorSideBarOptions = [
+  { option: "Prospectos", icon: <ViewListIcon />, url: "/main/prospects" },
+];
+
+export const promotorSideBarOptions = [
   {
     option: "Nuevo prospecto",
     icon: <PersonAddIcon />,

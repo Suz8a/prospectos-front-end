@@ -11,6 +11,7 @@ import { LoadingContainer } from "./styled";
 import InfoSectionItemsList from "../../components/info-section-items-list";
 import { useHistory } from "react-router-dom";
 import ModalRechazo from "../modal-rechazo";
+import { useSelector } from "react-redux";
 
 function ProspectInfo() {
   const [loading, setLoading] = useState(false);
@@ -20,6 +21,7 @@ function ProspectInfo() {
   >(undefined);
   const { id } = useParams() as any;
   const history = useHistory();
+  const { username } = useSelector<any, any>((state) => state);
   const datosPersonales: { title: string; value: string | undefined }[] = [
     {
       title: "Nombre",
@@ -90,7 +92,7 @@ function ProspectInfo() {
   async function onClickAutorizar() {
     setLoading(true);
     await updateProspectStatusById(id, "autorizado", "");
-    history.push("/prospects");
+    history.push("/main/prospects");
     setLoading(false);
   }
   function onClickRechazar() {
@@ -99,7 +101,7 @@ function ProspectInfo() {
   async function onClickModalAceptar(motivoRechazo: string) {
     setLoading(true);
     await updateProspectStatusById(id, "rechazado", motivoRechazo);
-    history.push("/prospects");
+    history.push("/main/prospects");
     setLoading(false);
   }
   function closeModal() {
@@ -133,11 +135,11 @@ function ProspectInfo() {
             <Grid item xs={12}>
               <InfoSection xs={4} title="Contacto" data={contacto} />
             </Grid>
-            {prospect?.estatus !== "enviado" && (
-              <Grid item xs={12}>
-                <InfoSection xs={4} title="Estatus" data={estatus} />
-              </Grid>
-            )}
+
+            <Grid item xs={12}>
+              <InfoSection xs={4} title="Estatus" data={estatus} />
+            </Grid>
+
             {prospect?.estatus === "rechazado" && (
               <Grid item xs={12}>
                 <InfoSection
@@ -158,7 +160,7 @@ function ProspectInfo() {
             <CircularProgress size="40px" />
           </LoadingContainer>
         )}
-        {prospect?.estatus === "enviado" && (
+        {prospect?.estatus === "enviado" && username === "evaluador" && (
           <Grid container item spacing={3} justify="flex-end">
             <Grid item xs={3}>
               <Button

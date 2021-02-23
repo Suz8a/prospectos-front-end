@@ -16,6 +16,7 @@ function App() {
       dispatch(setToken(localStorage.getItem("access_token") || ""));
     }
   }, [dispatch]);
+
   return (
     <BrowserRouter>
       <Switch>

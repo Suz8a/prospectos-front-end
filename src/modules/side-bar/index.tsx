@@ -1,12 +1,14 @@
 import { List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import React from "react";
 import AccountInfo from "../../components/account-info";
-import { sideBarOptions } from "../../constants";
+import {
+  evaluadorSideBarOptions,
+  promotorSideBarOptions,
+} from "../../constants";
 import Card from "../../elements/card";
 import { ExitContainer, ListContainer, SideBarContainer } from "./styled";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { useEffect } from "react";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { setToken, setUser } from "../../store/actions";
 
@@ -17,6 +19,9 @@ type SideBarProps = {
 function SideBar({ onOptionClick }: SideBarProps) {
   const history = useHistory();
   const dispatch = useDispatch();
+  const { username } = useSelector<any, any>((state) => state);
+  const sideBarOptions =
+    username === "promotor" ? promotorSideBarOptions : evaluadorSideBarOptions;
 
   function onOptionSalir() {
     history.push("/");
