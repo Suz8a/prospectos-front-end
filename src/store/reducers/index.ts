@@ -1,4 +1,4 @@
-export const storeReducer = (state: any, action: any) => {
+export const storeReducer = (state: any = {}, action: any) => {
   switch (action.type) {
     case "SET_USER":
       return {
@@ -14,5 +14,7 @@ export const storeReducer = (state: any, action: any) => {
       };
     case "GET_TOKEN":
       return state.access_token;
+    default:
+      return state;
   }
 };

@@ -7,6 +7,7 @@ import { IoPersonCircleSharp } from "react-icons/io5";
 import { getLogin } from "../../api";
 import { useDispatch } from "react-redux";
 import { setToken, setUser } from "../../store/actions";
+import { useHistory } from "react-router-dom";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -14,6 +15,7 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const [showErrors, setShowErrors] = useState(false);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   function onUserNameChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -33,6 +35,7 @@ function Login() {
       dispatch(setUser(username));
       dispatch(setToken(response.access_token));
       setShowErrors(false);
+      history.push("/main");
     } catch {
       setShowErrors(true);
     }

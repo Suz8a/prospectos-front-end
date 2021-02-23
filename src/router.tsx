@@ -6,9 +6,13 @@ import Section from "./containers/section";
 import ProspectForm from "./modules/prospect-form";
 import ProspectsList from "./modules/prospects-list";
 import ProspectInfo from "./modules/prospect-info";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser, setUser } from "./store/actions";
 
 export const Router = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
+  const { user } = useSelector<any, any>((state) => state);
 
   function onOptionClick(url: string) {
     history.push(url);
